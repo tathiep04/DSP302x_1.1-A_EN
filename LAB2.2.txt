@@ -1,0 +1,39 @@
+select sum(COST) as SUM_OF_COST from PETRESCUE;
+
+select max(QUANTITY) from PETRESCUE;
+select ANIMAL, QUANTITY from PETRESCUE where QUANTITY = (select max(QUANTITY) from PETRESCUE);
+--select ANIMAL from PETRESCUE where QUANTITY = max(QUANTITY);
+---
+select avg(COST) from PETRESCUE;
+select sum(COST * QUANTITY)/(select sum(QUANTITY) from PETRESCUE where ANIMAL='Dog') from PETRESCUE where ANIMAL = 'Dog';
+
+select avg(COST/QUANTITY) from PETRESCUE where ANIMAL='Dog';
+----------
+--B1
+select ID, round(COST) as ROUNDED_COST from PETRESCUE;
+--B2
+select distinct(ANIMAL), length(ANIMAL) as LENGTH from PETRESCUE;
+--B3
+select UCASE(ANIMAL) as ANIMAL from PETRESCUE;
+--B4
+select distinct(UCASE(ANIMAL)) as ANIMAL from PETRESCUE;
+
+--B5
+select * from PETRESCUE where LCASE(ANIMAL) ='cat';
+---------
+
+--C1
+
+select DAY(RESCUEDATE) from PETRESCUE where LCASE(ANIMAL)='cat';
+
+select count(ANIMAL) from PETRESCUE where DAYOFMONTH(RESCUEDATE) ='05';
+select COUNT(*) from PETRESCUE where MONTH(RESCUEDATE)=5;
+
+
+select COUNT(*) from PETRESCUE where MONTH(RESCUEDATE)='5';
+--C3
+select *, (RESCUEDATE + 3) as ARRIVAL_DATE from PETRESCUE;
+
+--C4
+select *, (current_date - RESCUEDATE) as LENGTH_OF_TIME from PETRESCUE;
+select *, (current date - RESCUEDATE) as LENGTH_OF_TIME from PETRESCUE;

@@ -1,0 +1,22 @@
+ --1
+ select * from EMPLOYEES where ADDRESS like '%Elgin,IL';
+--2 
+ select * from EMPLOYEES where B_DATE like '%197%';
+ --3
+ select * from EMPLOYEES where (DEP_ID = 5 and (SALARY between 60000 and 70000));
+ --4A
+ select * from EMPLOYEES order by DEP_ID;
+ --4B
+ select * from EMPLOYEES order by DEP_ID DESC, L_NAME DESC;
+ --5A
+ select DEP_ID, count(F_NAME) as Numbers_of_employee from EMPLOYEES group by DEP_ID;
+ --5B-5C-5D-5E
+ select DEP_ID, count(F_NAME) as NUM_EMPLOYEES, avg(SALARY) as AVG_SALARY 
+ from EMPLOYEES
+ group by DEP_ID
+ having count(F_NAME) <4
+ order by AVG_SALARY;
+ --6
+ select * from EMPLOYEES E, DEPARTMENTS D 
+ where E.DEP_ID = D.DEPT_ID_DEP
+ order by D.DEP_NAME ASC, E.L_NAME DESC; 
